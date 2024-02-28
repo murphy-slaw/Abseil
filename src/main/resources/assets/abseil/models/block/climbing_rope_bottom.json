@@ -1,0 +1,32 @@
+{
+  "parent": "abseil:block/climbing_rope",
+  "elements": [
+    {
+      "from": [ 7.4, 7, 7.9 ],
+      "to": [ 8.6, 16, 9.1 ],
+      "shade": true,
+      "faces": {
+        "north": {
+          "texture": "#rope",
+          "uv": [ 6, 0, 7, 9 ]
+        },
+        "west": {
+          "texture": "#rope",
+          "uv": [ 7, 0, 8, 9 ]
+        },
+        "south": {
+          "texture": "#rope",
+          "uv": [ 8, 0, 9, 9 ]
+        },
+        "east": {
+          "texture": "#rope",
+          "uv": [ 9, 0, 10, 9 ]
+        },
+        "down": {
+          "texture": "#rope",
+          "uv": [ 6, 0, 7, 1 ]
+        }
+      }
+    }
+  ]
+}

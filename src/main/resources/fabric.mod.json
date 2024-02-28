@@ -1,0 +1,34 @@
+{
+	"schemaVersion": 1,
+	"id": "abseil",
+	"version": "${version}",
+	"name": "Abseil",
+	"description": "A simple and vanilla-friendly climbing rope",
+	"authors": [
+		"Dienes"
+	],
+	"contact": {
+		"sources": "https://github.com/Dienes16/Abseil",
+		"issues": "https://github.com/Dienes16/Abseil/issues"
+	},
+	"license": "MIT",
+	"icon": "assets/abseil/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"me.dienes.abseil.Abseil"
+		]
+	},
+	"mixins": [
+		"abseil.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.15.7",
+		"minecraft": "~1.20.4",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}

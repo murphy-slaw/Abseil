@@ -1,0 +1,7 @@
+{
+  "ambientocclusion": true,
+  "textures": {
+    "particle": "abseil:block/climbing_rope",
+    "rope": "abseil:block/climbing_rope"
+  }
+}

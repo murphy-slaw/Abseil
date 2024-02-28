@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "facing=north,climbing_rope_segment=top": { "model": "abseil:block/climbing_rope_top" },
+    "facing=north,climbing_rope_segment=middle": { "model": "abseil:block/climbing_rope_middle" },
+    "facing=north,climbing_rope_segment=bottom": { "model": "abseil:block/climbing_rope_bottom" },
+    "facing=north,climbing_rope_segment=top_bottom": { "model": "abseil:block/climbing_rope_top_bottom" },
+    "facing=east,climbing_rope_segment=top": { "model": "abseil:block/climbing_rope_top", "y": 90 },
+    "facing=east,climbing_rope_segment=middle": { "model": "abseil:block/climbing_rope_middle", "y": 90 },
+    "facing=east,climbing_rope_segment=bottom": { "model": "abseil:block/climbing_rope_bottom", "y": 90 },
+    "facing=east,climbing_rope_segment=top_bottom": { "model": "abseil:block/climbing_rope_top_bottom", "y": 90 },
+    "facing=south,climbing_rope_segment=top": { "model": "abseil:block/climbing_rope_top", "y": 180 },
+    "facing=south,climbing_rope_segment=middle": { "model": "abseil:block/climbing_rope_middle", "y": 180 },
+    "facing=south,climbing_rope_segment=bottom": { "model": "abseil:block/climbing_rope_bottom", "y": 180 },
+    "facing=south,climbing_rope_segment=top_bottom": { "model": "abseil:block/climbing_rope_top_bottom", "y": 180 },
+    "facing=west,climbing_rope_segment=top": { "model": "abseil:block/climbing_rope_top", "y": 270 },
+    "facing=west,climbing_rope_segment=middle": { "model": "abseil:block/climbing_rope_middle", "y": 270 },
+    "facing=west,climbing_rope_segment=bottom": { "model": "abseil:block/climbing_rope_bottom", "y": 270 },
+    "facing=west,climbing_rope_segment=top_bottom": { "model": "abseil:block/climbing_rope_top_bottom", "y": 270 }
+  }
+}
