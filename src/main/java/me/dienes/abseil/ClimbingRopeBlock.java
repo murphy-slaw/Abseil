@@ -4,14 +4,19 @@ import net.minecraft.block.*;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.item.ItemStack;
+import net.minecraft.loot.context.LootContextParameterSet;
+import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
+import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
@@ -19,6 +24,9 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Collections;
+import java.util.List;
 
 public class ClimbingRopeBlock extends Block implements Waterloggable {
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
@@ -80,6 +88,13 @@ public class ClimbingRopeBlock extends Block implements Waterloggable {
 
     @SuppressWarnings("deprecation")
     @Override
+    public List<ItemStack> getDroppedStacks(BlockState state, LootContextParameterSet.Builder builder) {
+        // Disable default drops, done manually in onStateReplaced()
+        return Collections.emptyList();
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         if (isTopSegment(state)) {
             if (!state.isOf(newState.getBlock())) {
@@ -89,6 +104,25 @@ public class ClimbingRopeBlock extends Block implements Waterloggable {
                     TripwireHookBlockHelper.setPowered(world, blockPosAbove, false);
                     TripwireHookBlockHelper.playDetachSound(world, blockPosAbove);
                     // TODO: Necessary to call world.emitGameEvent(GameEvent.BLOCK_CHANGE, blockPos, GameEvent.Emitter.of(playerEntity, blockState))?
+                }
+
+                // Drop the rope item manually one block above the rope to help players collect it
+                if (world instanceof ServerWorld) {
+                    // Base drop on loot table
+                    LootContextParameterSet.Builder builder = new LootContextParameterSet.Builder((ServerWorld) world)
+                        .add(LootContextParameters.ORIGIN, Vec3d.ofCenter(pos))
+                        .add(LootContextParameters.TOOL, ItemStack.EMPTY);
+
+                    // Call base class' version of getDroppedStacks() because ours has been disabled
+                    super.getDroppedStacks(state, builder).forEach(
+                        itemStack -> ItemScatterer.spawn(
+                            world,
+                            blockPosAbove.getX(),
+                            blockPosAbove.getY(),
+                            blockPosAbove.getZ(),
+                            itemStack
+                        )
+                    );
                 }
             }
         }
